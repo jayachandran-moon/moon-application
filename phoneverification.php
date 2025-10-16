@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verify_otp'])) {
                 
                 // Redirect after successful verification
                 $_SESSION['verified_phone'] = $verified_phone;
-                header("Location: index.php");
+                header("Location: update.php");
                 exit();
             }
         } else {

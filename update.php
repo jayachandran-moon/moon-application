@@ -83,10 +83,8 @@ if(isset($_POST['submit'])){
 if(isset($_GET['deleteid'])) {
     $delete_id = $_GET['deleteid'];
     $delete_sql = "DELETE FROM `mooncontent` WHERE id=$delete_id";
-    if(mysqli_query($conn, $delete_sql)) {
-        $msg = "Record deleted successfully!";
-    } else {
-        $msg = "Error deleting record: " . mysqli_error($conn);
+    if(!mysqli_query($conn, $delete_sql)) {
+         $msg = "Error deleting record: " . mysqli_error($conn);
     }
 }
 ?>
@@ -175,6 +173,7 @@ if(isset($_GET['deleteid'])) {
             display: none;
         }
     }
+
     </style>
 
 </head>
@@ -186,7 +185,7 @@ if(isset($_GET['deleteid'])) {
             <a class="navbar-brand">𝓶𝓸𝓸𝓷</a>
             <form class="d-flex" role="search">
                 <a class="navbar-brand col-sm-4 col-md-8">Jayachandran</a>
-                <button class="btn btn-outline-success" type="button" onclick="window.location.href='update.php'">X</button>
+                <button class="  btn btn-outline-success" type="button" onclick="window.location.href='phoneverification.php'">X</button>
             </form>
         </div>
     </nav>
@@ -229,11 +228,11 @@ if(isset($_GET['deleteid'])) {
                                         <td>'.htmlspecialchars($row['secondname']).'</td>
                                         <td>'.htmlspecialchars($row['phone']).'</td>
                                         <td>'.htmlspecialchars($row['textcontent']).'</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-sm">
+                                        <td class="w-100">
+                                            <button type="button" class="btn btn-primary btn-sm m-1">
                                                 <a href="update.php?updateid='.$row['id'].'" class="text-white text-decoration-none">Update</a>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm">
+                                            <button type="button" class="btn btn-danger btn-sm m-1">
                                                 <a href="update.php?deleteid='.$row['id'].'" class="text-white text-decoration-none" onclick="return confirm(\'Are you sure you want to delete this record?\')">Delete</a>
                                             </button>
                                         </td>
@@ -292,12 +291,12 @@ if(isset($_GET['deleteid'])) {
                 </div>
 
                 <div class="input-group mb-3 mt-3">
-                    <button type="reset" class="btn btn-secondary w-25" onclick="clearForm()">Clear</button>
+                    <button type="reset" class="btn btn-secondary w-50" onclick="clearForm()">Clear</button>
                     <?php if($is_update): ?>
-                        <button type="submit" name="submit" class="btn btn-warning w-50">Update Record</button>
+                        <button type="submit" name="submit" class="btn btn-warning w-25">Update Record</button>
                         <a href="update.php" class="btn btn-outline-secondary w-25">Cancel</a>
                     <?php else: ?>
-                        <button type="submit" name="submit" class="btn btn-primary w-75">Submit New Record</button>
+                        <button type="submit" name="submit" class="btn btn-primary w-50">Submit New Record</button>
                     <?php endif; ?>
                 </div>
             </form>
